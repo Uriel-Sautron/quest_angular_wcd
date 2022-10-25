@@ -1,0 +1,83 @@
+<form #signup="ngForm" (ngSubmit)="signup.valid && onSubmit()">
+  <fieldset>
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      [(ngModel)]="user.email"
+      #email="ngModel"
+      required
+      email
+    />
+  </fieldset>
+
+  <!-- Message d'erreurs de l'input email -->
+  <div *ngIf="signup.submitted && email.errors">
+    <span *ngIf="email.errors['required']">Le email est requis</span>
+    <span *ngIf="email.errors['email']">L'email est invalide</span>
+  </div>
+
+  <fieldset>
+    <label for="firstName">Prénom</label>
+    <input
+      type="text"
+      id="firstName"
+      name="firstName"
+      [(ngModel)]="user.firstName"
+      #firstName="ngModel"
+      required
+      minlength="3"
+      maxlength="15"
+    />
+  </fieldset>
+
+  <!-- Message d'erreurs de l'input firstName -->
+  <div *ngIf="signup.submitted && firstName.errors">
+    <span *ngIf="firstName.errors['required']">Le prénom est requis</span>
+    <span *ngIf="firstName.errors['minlength']">
+      Le prénom doit comporter au moins 3 caractères
+    </span>
+    <span *ngIf="firstName.errors['maxlength']">
+      Le prénom ne doit pas dépasser 15 caractères
+    </span>
+  </div>
+
+  <fieldset>
+    <label for="lastName">Nom</label>
+    <input
+      type="text"
+      id="lastName"
+      name="lastName"
+      [(ngModel)]="user.lastName"
+      #lastName="ngModel"
+      required
+      minlength="3"
+      maxlength="15"
+    />
+  </fieldset>
+
+  <!-- Message d'erreurs de l'input lastName -->
+  <div *ngIf="signup.submitted && lastName.errors">
+    <span *ngIf="lastName.errors['required']">Le nom est requis</span>
+    <span *ngIf="lastName.errors['minlength']"
+      >Le nom doit comporter au moins 3 caractères</span
+    >
+    <span *ngIf="lastName.errors['maxlength']"
+      >Le nom ne doit pas dépasser 15 caractères</span
+    >
+  </div>
+
+  <fieldset>
+    <label for="password">Mot de passe</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      [(ngModel)]="user.password"
+      #password="ngModel"
+    />
+  </fieldset>
+
+  <button type="submit">Inscription</button>
+</form>
