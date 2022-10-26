@@ -1,0 +1,11 @@
+<div class="list-kitten">
+  <ul>
+    <li *ngFor="let kitten of kittenList">
+      <img src="{{ kitten.imgUrl }}" alt="{{ kitten.name }}" />
+      <h2>{{ kitten.name }}</h2>
+      <p>{{ kitten.birthDate | date: "d MMM y" }}</p>
+      <p>{{ kitten.race }}</p>
+      <button (click)="createNewUserKitten(kitten)">Adopter</button>
+    </li>
+  </ul>
+</div>

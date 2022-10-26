@@ -1,0 +1,65 @@
+<form #form="ngForm" (submit)="createNewKitten()">
+  <div>
+    <label for="name">Nom</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      [(ngModel)]="newKitten.name"
+      #name="ngModel"
+      required
+    />
+  </div>
+  <div *ngIf="form.submitted && name.errors">
+    <span *ngIf="name.errors['required']">Le Nom est requis</span>
+  </div>
+
+  <div>
+    <label for="race">Race</label>
+    <input
+      type="text"
+      id="race"
+      name="race"
+      [(ngModel)]="newKitten.race"
+      #race="ngModel"
+      required
+    />
+  </div>
+  <div *ngIf="form.submitted && race.errors">
+    <span *ngIf="race.errors['required']">La Race est requis</span>
+  </div>
+
+  <div>
+    <label for="birthDate">Date de naissance</label>
+    <input
+      type="date"
+      id="birthDate"
+      name="birthDate"
+      [(ngModel)]="newKitten.birthDate"
+      #birthDate="ngModel"
+      required
+    />
+  </div>
+  <div *ngIf="form.submitted && birthDate.errors">
+    <span *ngIf="birthDate.errors['required']"
+      >La Date de naissance est requis</span
+    >
+  </div>
+
+  <div>
+    <label for="imgUrl">Photo</label>
+    <input
+      type="text"
+      id="imgUrl"
+      name="imgUrl"
+      [(ngModel)]="newKitten.imgUrl"
+    />
+  </div>
+
+  <button
+    type="submit"
+    [ngStyle]="{ borderColor: form.valid ? 'green' : 'red' }"
+  >
+    Créer
+  </button>
+</form>
