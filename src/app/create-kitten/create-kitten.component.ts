@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormGroupDirective, NgForm } from '@angular/forms';
 import { Kitten } from '../models/kitten.model';
 
 @Component({
@@ -16,7 +17,10 @@ export class CreateKittenComponent implements OnInit {
   @Output()
   sendNewKittenToParent: EventEmitter<Kitten> = new EventEmitter();
 
-  createNewKitten(): void {
-    this.sendNewKittenToParent.emit(this.newKitten);
+  createNewKitten(form: NgForm): void {
+    let { name, race, birthDate, imgUrl } = this.newKitten;
+    this.sendNewKittenToParent.emit(new Kitten(name, race, birthDate, imgUrl));
+    form.reset();
+    form.resetForm();
   }
 }
